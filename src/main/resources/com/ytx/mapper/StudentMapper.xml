@@ -278,7 +278,7 @@
   
   	<!-- 分页查询学生 -->
   <select id="studentList" parameterType="Student" resultType="Student">
-  		select <include refid="Base_Column_List1"></include>
+  		select <include refid="Base_Column_List1"></include> 
   		,c.name classname,
 		m.`name` majorname,
 		t1.`area_name` shengname,
