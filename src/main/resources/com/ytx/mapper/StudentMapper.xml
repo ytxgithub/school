@@ -284,7 +284,7 @@
 		t1.`area_name` shengname,
 		t2.`area_name` cityname,
 		t3.`area_name` xianname
-		 FROM student s 
+		FROM student s 
 		JOIN class c ON s.classid=c.id 
 		JOIN major m ON s.`majorid`=m.`id` 
 		JOIN think_areas t1 ON s.`sheng`=t1.`area_id`
