@@ -1,5 +1,7 @@
 package com.ytx.mapper;
 
+import java.util.List;
+
 import com.ytx.pojo.Major;
 
 public interface MajorMapper {
@@ -50,4 +52,10 @@ public interface MajorMapper {
      * @mbggenerated Sun Jul 12 23:13:43 CST 2020
      */
     int updateByPrimaryKey(Major record);
+    
+   /**
+    * 查询专业信息
+    * @return
+    */
+    List<Major> majors();
 }

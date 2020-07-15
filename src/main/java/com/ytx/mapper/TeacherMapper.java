@@ -59,4 +59,11 @@ public interface TeacherMapper {
      * @return
      */
     List<Teacher> teacherList();
+    
+    /**
+     * 老师登录
+     * @param teacher
+     * @return
+     */
+    Teacher teacherone(Teacher teacher);
 }

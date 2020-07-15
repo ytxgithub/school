@@ -2,6 +2,8 @@ package com.ytx.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ytx.pojo.Student;
 
 public interface StudentMapper {
@@ -57,7 +59,7 @@ public interface StudentMapper {
     Student studentLogin(Student student);
     
     //学生列表 分页
-    List<Student> studentList(Student student);
+    List<Student> studentList(@Param("student")Student student,@Param("teacherid")Long teacherid);
     
     //查询自己的信息
     Student studentone(Long id);

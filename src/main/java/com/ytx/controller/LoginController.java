@@ -8,12 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ytx.pojo.Student;
+import com.ytx.pojo.Teacher;
 import com.ytx.service.StudentService;
+import com.ytx.service.TeacherService;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 	@Autowired private StudentService studentService;
+	@Autowired private TeacherService teacherService;
 	/**
 	 * 登录
 	 * @param student
@@ -32,11 +35,22 @@ public class LoginController {
 					session.setAttribute("STUDENT",stu);
 					return "stu/stu_main";
 				}
+			}else if("老师".equals(shenfen)){
+				Teacher t=new Teacher();
+				t.setTeachercode(student.getStucode());
+				t.setTeacherpwd(student.getStupwd());
+				Teacher tea=teacherService.teacherone(t);
+				if(tea!=null){
+					HttpSession session=request.getSession();
+					session.setAttribute("TEACHER",tea);
+					return "tea/tea_main";
+				}
 			}
 			
 		}
 		return "stu/login";
 		
 	}
+	
 	
 }

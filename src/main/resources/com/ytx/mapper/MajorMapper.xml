@@ -119,4 +119,10 @@
       modifyby = #{modifyby,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <!-- 查询专业信息 -->
+  <select id="majors" resultType="Major">
+  		select <include refid="Base_Column_List"></include>
+  		from major
+  </select>
 </mapper>

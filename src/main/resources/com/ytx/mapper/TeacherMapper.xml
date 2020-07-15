@@ -195,4 +195,11 @@
   		select <include refid="Base_Column_List"></include>
   		from teacher
   </select>
+  
+  <!-- 老师登录 -->
+  <select id="teacherone" resultType="Teacher" parameterType="Teacher">
+  		select <include refid="Base_Column_List"></include>
+  		from teacher where teachercode=#{teachercode} 
+  		and teacherpwd=#{teacherpwd} 
+  </select>
 </mapper>

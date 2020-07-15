@@ -12,13 +12,13 @@ public interface StudentService {
 	Student studentLogin(Student student);
 	
 	/**
-	 * 动态条件  查询全部学生信息
+	 * 动态条件  查询自己班级学生信息
 	 * @param student
 	 * @param pageIndex
 	 * @param pageSize
 	 * @return
 	 */
-	PageInfo<Student> studentList(Student student,Integer pageIndex,Integer pageSize);
+	PageInfo<Student> studentList(Student student,Integer pageIndex,Integer pageSize,Long teacherid);
 	
 	/**
 	 * 根据id查询学生
@@ -26,4 +26,18 @@ public interface StudentService {
 	 * @return
 	 */
 	Student studentone(Long id);
+	
+	/**
+	 * 根据id删除学生
+	 * @param id
+	 * @return
+	 */
+	int deleteByPrimaryKey(Long id);
+	
+	/**
+	 * 修改student信息
+	 * @param student
+	 * @return
+	 */
+	int updateByPrimaryKeySelective(Student student);
 }

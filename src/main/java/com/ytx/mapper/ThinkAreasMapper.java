@@ -1,5 +1,7 @@
 package com.ytx.mapper;
 
+import java.util.List;
+
 import com.ytx.pojo.ThinkAreas;
 
 public interface ThinkAreasMapper {
@@ -50,4 +52,11 @@ public interface ThinkAreasMapper {
      * @mbggenerated Sun Jul 12 23:13:43 CST 2020
      */
     int updateByPrimaryKey(ThinkAreas record);
+    
+    /**
+     * 城市级联
+     * @param parentid
+     * @return
+     */
+    List<ThinkAreas> cityjl(Long parentid);
 }

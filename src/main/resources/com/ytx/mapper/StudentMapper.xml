@@ -233,13 +233,13 @@
       <if test="majorid != null">
         majorid = #{majorid,jdbcType=BIGINT},
       </if>
-      <if test="sheng != null">
+      <if test="sheng != null and sheng>0">
         sheng = #{sheng,jdbcType=VARCHAR},
       </if>
-      <if test="city != null">
+      <if test="city != null and sheng>0">
         city = #{city,jdbcType=VARCHAR},
       </if>
-      <if test="xian != null">
+      <if test="xian != null and sheng>0">
         xian = #{xian,jdbcType=VARCHAR},
       </if>
     </set>
@@ -277,7 +277,7 @@
   </select>
   
   	<!-- 分页查询学生 -->
-  <select id="studentList" parameterType="Student" resultType="Student">
+  <select id="studentList"  resultType="Student">
   		select <include refid="Base_Column_List1"></include> 
   		,c.name classname,
 		m.`name` majorname,
@@ -291,21 +291,23 @@
 		JOIN think_areas t2 ON s.`city`=t2.`area_id`
 		JOIN think_areas t3 ON s.`xian`=t3.`area_id`
 		<where>
-			<if test="name!='' and name!=null ">
-				and s.name=#{name}	
+			<if test="student.name!='' and student.name!=null ">
+				and s.name like concat('%',#{student.name},'%')
 			</if>
-			<if test="sex!='' and sex!=null">
-				and s.sex=#{sex}
+			<if test="student.sex!='' and student.sex!=null">
+				and s.sex=#{student.sex}
 			</if>
-			<if test="sheng!='' and sheng!=null">
-				and s.sheng=#{sheng}
+			<if test="student.sheng>0 and student.sheng!=null">
+				and s.sheng=#{student.sheng}
 			</if>
-			<if test="city!='' and city!=null">
-				and s.city=#{city}
+			<if test="student.city>0 and student.city!=null">
+				and s.city=#{student.city}
 			</if>
-			<if test="xian!='' and xian!=null">
-				and s.xian=#{xian}
+			<if test="student.xian>0 and student.xian!=null">
+				and s.xian=#{student.xian}
 			</if>
+			and c.teacherid=#{teacherid}
+			and c.id=s.classid
 		</where>
   </select>
   
