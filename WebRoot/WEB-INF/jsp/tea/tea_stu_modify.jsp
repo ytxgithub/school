@@ -48,7 +48,7 @@
       							</div>
       						</div>
       
-      						<div class="form-group">
+      						<div class="form-group"> 
       							<label class="control-label col-md-2">专业名称</label>
       							<div class="col-md-10">
       								<select id="subjectnames" name="majorid" class="form-control">
