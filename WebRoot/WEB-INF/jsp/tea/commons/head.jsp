@@ -49,12 +49,12 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>开发者</h3>
+                <h3>老师后台</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i>学生信息<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="${pageContext.request.contextPath }/student/studentlist">学生列表</a></li>
-					   <li><a href="#">添加学生</a></li>
+					   <li><a href="${pageContext.request.contextPath }/student/stuaddform">添加学生</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i>课程安排<span class="fa fa-chevron-down"></span></a>

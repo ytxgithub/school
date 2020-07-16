@@ -73,7 +73,7 @@
 					</div>
       			<div class="panel panel-success">
       				<div class="panel-heading">
-      					<h4>我的学生</h4>
+      					<h4>${classname}班的学生</h4>
       				</div>
       				<div class="panel-body">
       					<div class="row">
@@ -101,7 +101,15 @@
 	      										<td>${s.classname }</td>
 	      										<td>${s.majorname }</td>
 	      										<td>${s.phone }</td>
-	      										<td>${s.shengname}->${s.cityname}->${s.xianname}</td>
+	      										<c:choose>
+	      											<c:when test="${s.xianname!=null}">
+	      												<td>${s.shengname}->${s.cityname}->${s.xianname}</td>
+	      											</c:when>
+	      											<c:otherwise>
+	      												<td>该用户地址不全</td>
+	      											</c:otherwise>
+	      										</c:choose>
+	      										
 												<td>
 													<div class="btn-group dropdown">
 														<button type="button" class="btn btn-danger">选择操作</button>

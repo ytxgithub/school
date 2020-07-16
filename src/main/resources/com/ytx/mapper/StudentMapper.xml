@@ -287,9 +287,9 @@
 		FROM student s 
 		JOIN class c ON s.classid=c.id 
 		JOIN major m ON s.`majorid`=m.`id` 
-		JOIN think_areas t1 ON s.`sheng`=t1.`area_id`
-		JOIN think_areas t2 ON s.`city`=t2.`area_id`
-		JOIN think_areas t3 ON s.`xian`=t3.`area_id`
+		LEFT JOIN think_areas t1 ON s.`sheng`=t1.`area_id`
+		LEFT JOIN think_areas t2 ON s.`city`=t2.`area_id`
+		LEFT JOIN think_areas t3 ON s.`xian`=t3.`area_id`
 		<where>
 			<if test="student.name!='' and student.name!=null ">
 				and s.name like concat('%',#{student.name},'%')
@@ -322,9 +322,9 @@
 		 FROM student s 
 		LEFT JOIN class c ON s.classid=c.id 
 		JOIN major m ON s.`majorid`=m.`id` 
-		JOIN think_areas t1 ON s.`sheng`=t1.`area_id`
-		JOIN think_areas t2 ON s.`city`=t2.`area_id`
-		JOIN think_areas t3 ON s.`xian`=t3.`area_id`
+		LEFT JOIN think_areas t1 ON s.`sheng`=t1.`area_id`
+		LEFT JOIN think_areas t2 ON s.`city`=t2.`area_id`
+		LEFT JOIN think_areas t3 ON s.`xian`=t3.`area_id`
 		 where s.id=#{id}
   </select>
 </mapper>

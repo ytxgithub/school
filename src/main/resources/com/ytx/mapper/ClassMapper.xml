@@ -143,4 +143,16 @@
       modifyby = #{modifyby,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+<!--   查询班级全部信息 -->
+  <select id="classAll" resultType="Class">
+  	select 
+    <include refid="Base_Column_List" />
+    from class
+  </select>
+  <!-- 根据老师id查询班级名字 -->
+  <select id="findNameByTeaid" parameterType="long" resultType="string">
+  		select name from class where teacherid=#{teacherid}
+  	  		
+  </select>
 </mapper>

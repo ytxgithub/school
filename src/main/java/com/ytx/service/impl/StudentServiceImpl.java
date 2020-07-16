@@ -43,5 +43,10 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		return studentMapper.updateByPrimaryKeySelective(student);
 	}
+	@Override
+	public int insertSelective(Student student) {
+		// TODO Auto-generated method stub
+		return studentMapper.insertSelective(student);
+	}
 
 }

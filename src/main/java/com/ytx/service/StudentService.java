@@ -40,4 +40,11 @@ public interface StudentService {
 	 * @return
 	 */
 	int updateByPrimaryKeySelective(Student student);
+	
+	/**
+	 * 增加student
+	 * @param student
+	 * @return
+	 */
+	int insertSelective(Student student);
 }

@@ -72,7 +72,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-2">学生图片</label>
 								<div class="col-md-10">
-									<img src="images/img.jpg" alt="" class="thumbnail">
+									<img src="${pageContext.request.contextPath}/uploads/${stuone.photo}"  class="thumbnail"/>
 								</div>
 							</div>
 							

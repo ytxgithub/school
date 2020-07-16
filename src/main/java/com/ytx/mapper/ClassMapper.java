@@ -1,5 +1,7 @@
 package com.ytx.mapper;
 
+import java.util.List;
+
 import com.ytx.pojo.Class;
 
 public interface ClassMapper {
@@ -50,4 +52,17 @@ public interface ClassMapper {
      * @mbggenerated Sun Jul 12 23:13:43 CST 2020
      */
     int updateByPrimaryKey(Class record);
+    
+    /**
+     * 查询班级信息
+     * @return
+     */
+    List<Class> classAll();
+    
+    /**
+     * 根据老师的id查询班级
+     * @param teacherid
+     * @return
+     */
+    String findNameByTeaid(Long teacherid);
 }
