@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ytx.mapper.TeacherMapper;
 import com.ytx.pojo.Teacher;
 import com.ytx.service.TeacherService;
@@ -30,5 +32,28 @@ public class TeacherServiceImpl implements TeacherService {
 		// TODO Auto-generated method stub
 		return teacherMapper.teacherone(teacher);
 	}
+	@Override
+	public PageInfo<Teacher> teacherAll(Teacher teacher,Integer pageIndex, Integer pageSize) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(pageIndex, pageSize);
+		PageInfo<Teacher> pageInfo=new PageInfo<Teacher>(teacherMapper.teacherAll(teacher));
+		return pageInfo;
+	}
+	@Override
+	public Teacher findTeaById(Long id) {
+		// TODO Auto-generated method stub
+		return teacherMapper.findTeaById(id);
+	}
+	@Override
+	public Integer delTea(Long id) {
+		// TODO Auto-generated method stub
+		return teacherMapper.delTea(id);
+	}
+	@Override
+	public Integer teaModify(Teacher teacher) {
+		// TODO Auto-generated method stub
+		return teacherMapper.updateByPrimaryKeySelective(teacher);
+	}
+	
 
 }

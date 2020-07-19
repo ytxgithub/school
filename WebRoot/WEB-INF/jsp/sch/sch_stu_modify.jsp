@@ -20,6 +20,7 @@
       				<div class="panel-body">
       					<form action="${pageContext.request.contextPath}/student/modifystu" class="form-horizontal">
 							<input type="hidden" name="id" value="${stuone.id }"/>
+							<input type="hidden" name="status" value="123"/>
       						<div class="form-group">
       							<label class="control-label col-md-2">学生姓名</label>
       							<div class="col-md-10">
@@ -102,7 +103,7 @@
 							<div class="form-group">
 								<div class="col-md-10 col-md-offset-2">
 									<button type="submit" class="btn btn-success">保存修改</button>
-									<a href="${pageContext.request.contextPath}/student/studentlist" class="btn btn-danger">返回</a>
+									<a href="${pageContext.request.contextPath}/sch/schStulist" class="btn btn-danger">返回</a>
 								</div>
 							</div>
       						

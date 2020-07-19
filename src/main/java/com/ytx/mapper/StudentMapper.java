@@ -61,6 +61,9 @@ public interface StudentMapper {
     //学生列表 分页
     List<Student> studentList(@Param("student")Student student,@Param("teacherid")Long teacherid);
     
+    //校长查询学生
+    List<Student> schstulist(@Param("student")Student student);
+    
     //查询自己的信息
     Student studentone(Long id);
 }

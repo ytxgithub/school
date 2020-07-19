@@ -48,5 +48,11 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		return studentMapper.insertSelective(student);
 	}
+	@Override
+	public PageInfo<Student> schstulist(Student student, Integer pageIndex, Integer pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
+		PageInfo<Student> pageInfo=new PageInfo<Student>(studentMapper.schstulist(student));
+		return pageInfo;
+	}
 
 }

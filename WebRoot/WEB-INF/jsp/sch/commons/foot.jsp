@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
- <!-- footer content -->
+  <!-- footer content -->
         <footer>
           <div class="pull-right">
             	北大青鸟北资第一学院BS3T272班SSM项目

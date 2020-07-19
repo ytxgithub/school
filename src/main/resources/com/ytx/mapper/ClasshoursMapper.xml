@@ -199,4 +199,31 @@
 		JOIN teacher t ON t.`id`=cl.`teacherid`
   		where cl.studentid=#{studentid}
   </select>
+  
+<!--   查询该老师的上课 课时 -->
+  <select id="teahourslist" resultType="Classhours" parameterType="long">
+  		SELECT <include refid="Base_Column_List1"></include> 
+  		,sub.`subjectname` subjectname,
+  		s.`name` studentname,t.`name` teachername FROM  classhours cl
+		JOIN subject sub ON cl.`subjectid`=sub.`id`
+		JOIN student s ON s.`id`=cl.`studentid`
+		JOIN teacher t ON t.`id`=cl.`teacherid`
+  		where cl.teacherid=#{teacherid} and cl.ident=1
+  </select>
+  
+<!--   查询要审核的课时 -->
+  <select id="teahourssh" resultType="Classhours" parameterType="long">
+  		SELECT <include refid="Base_Column_List1"></include> 
+  		,sub.`subjectname` subjectname,
+  		s.`name` studentname,t.`name` teachername FROM  classhours cl
+		JOIN subject sub ON cl.`subjectid`=sub.`id`
+		JOIN student s ON s.`id`=cl.`studentid`
+		JOIN teacher t ON t.`id`=cl.`teacherid`
+  		where cl.teacherid=#{teacherid} and cl.ident=2
+  </select>
+  
+<!--   通过或不通过审核 -->
+  <update id="ident" >
+  		update classhours set ident=#{status} where id=#{classhoursid}
+  </update>
 </mapper>

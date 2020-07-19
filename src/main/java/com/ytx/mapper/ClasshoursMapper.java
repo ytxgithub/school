@@ -2,6 +2,8 @@ package com.ytx.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ytx.pojo.Classhours;
 
 public interface ClasshoursMapper {
@@ -59,5 +61,27 @@ public interface ClasshoursMapper {
      * @return
      */
     List<Classhours> hourslist(Long studentid);
+    
+    /**
+     * 根据老师id查询上课情况
+     * @param studentid
+     * @return
+     */
+    List<Classhours> teahourslist(Long teacherid);
+    
+    /**
+     * 审核课程
+     * @param classhours
+     * @return
+     */
+    List<Classhours> teahourssh(Long teacherid);
+    
+    /**
+     * 通过或不通过审核课程
+     * @param classhoursid
+     * @return
+     */
+    int ident(@Param("classhoursid")Long classhoursid,@Param("status")Integer status);
+    
     
 }

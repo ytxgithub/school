@@ -7,7 +7,7 @@
       	<div class="row">
         		<div class="col-md-12">
         			<div class="alert alert-info">
-        				欢迎${sessionScope.TEACHER.name }老师,进入学生管理系统
+        				欢迎${sessionScope.SCH.name }校长,进入学生管理系统
         			</div>
         		</div>
         	</div>
@@ -77,7 +77,7 @@
 							</div>
 							
 							<div class="col-md-1 col-md-offset-2" style="margin-bottom: 80px;">
-								<a href="${pageContext.request.contextPath}/student/studentlist" class="btn btn-success btn-block">返回</a>
+								<a href="${pageContext.request.contextPath}/sch/schStulist" class="btn btn-success btn-block">返回</a>
 							</div>
       						
       					</form>

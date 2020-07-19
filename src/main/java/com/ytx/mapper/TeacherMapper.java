@@ -66,4 +66,24 @@ public interface TeacherMapper {
      * @return
      */
     Teacher teacherone(Teacher teacher);
+    
+    /**
+     * 查询所有老师 并分业
+     * @return
+     */
+    List<Teacher> teacherAll(Teacher teacher);
+    
+    /**
+     * 根据id查询老师
+     * @param id
+     * @return
+     */
+    Teacher findTeaById(Long id);
+    
+    /**
+     * 根据id删除老师
+     * @param id
+     * @return
+     */
+    Integer delTea(Long id);
 }

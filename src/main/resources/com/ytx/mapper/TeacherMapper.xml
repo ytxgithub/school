@@ -202,4 +202,30 @@
   		from teacher where teachercode=#{teachercode} 
   		and teacherpwd=#{teacherpwd} 
   </select>
+  
+<!--   查询所有老师信息并分业 -->
+<select id="teacherAll" resultType="Teacher" parameterType="Teacher">
+	select <include refid="Base_Column_List"></include>
+  	from teacher
+  	<where>
+  		<if test="name != null and name!=''">
+        	and name like concat('%',#{name},'%')
+      	</if>
+      	 <if test="sex != null and sex!=''">
+       		and sex = #{sex}
+      	</if>
+  	</where>
+</select>
+
+<!-- 根据老师id查询老师 -->
+<select id="findTeaById" resultType="Teacher" parameterType="long">
+	select <include refid="Base_Column_List"></include>
+  		from teacher
+  		where id=#{id}
+</select>
+
+<!-- 根据id删除老师 -->
+<select id="delTea" parameterType="long" resultType="java.lang.Integer">
+	delete from teacher where id=#{id}
+</select>
 </mapper>

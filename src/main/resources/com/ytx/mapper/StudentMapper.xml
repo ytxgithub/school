@@ -306,8 +306,43 @@
 			<if test="student.xian>0 and student.xian!=null">
 				and s.xian=#{student.xian}
 			</if>
+			
 			and c.teacherid=#{teacherid}
 			and c.id=s.classid
+		</where>
+  </select>
+  
+  	<!-- 校长分页查询学生 -->
+  <select id="schstulist"  resultType="Student">
+  		select <include refid="Base_Column_List1"></include> 
+  		,c.name classname,
+		m.`name` majorname,
+		t1.`area_name` shengname,
+		t2.`area_name` cityname,
+		t3.`area_name` xianname
+		FROM student s 
+		JOIN class c ON s.classid=c.id 
+		JOIN major m ON s.`majorid`=m.`id` 
+		LEFT JOIN think_areas t1 ON s.`sheng`=t1.`area_id`
+		LEFT JOIN think_areas t2 ON s.`city`=t2.`area_id`
+		LEFT JOIN think_areas t3 ON s.`xian`=t3.`area_id`
+		<where>
+			<if test="student.name!='' and student.name!=null ">
+				and s.name like concat('%',#{student.name},'%')
+			</if>
+			<if test="student.sex!='' and student.sex!=null">
+				and s.sex=#{student.sex}
+			</if>
+			<if test="student.sheng>0 and student.sheng!=null">
+				and s.sheng=#{student.sheng}
+			</if>
+			<if test="student.city>0 and student.city!=null">
+				and s.city=#{student.city}
+			</if>
+			<if test="student.xian>0 and student.xian!=null">
+				and s.xian=#{student.xian}
+			</if>
+			
 		</where>
   </select>
   

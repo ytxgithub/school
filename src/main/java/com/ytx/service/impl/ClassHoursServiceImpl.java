@@ -1,5 +1,7 @@
 package com.ytx.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -30,6 +32,23 @@ public class ClassHoursServiceImpl implements ClassHoursService{
 	public int insertSelective(Classhours classhours) {
 		// TODO Auto-generated method stub
 		return classhoursMapper.insertSelective(classhours);
+	}
+	@Override
+	public PageInfo<Classhours> teahourslist(Long teacherid,Integer pageIndex,Integer pageSize){
+		PageHelper.startPage(pageIndex, pageSize);
+		PageInfo<Classhours> pageInfo=new PageInfo<Classhours>(classhoursMapper.teahourslist(teacherid));
+		return pageInfo;
+	}
+	@Override
+	public PageInfo<Classhours> teahourssh(Long teacherid,Integer pageIndex,Integer pageSize) {
+		PageHelper.startPage(pageIndex, pageSize);
+		PageInfo<Classhours> pageInfo=new PageInfo<Classhours>(classhoursMapper.teahourssh(teacherid));
+		return pageInfo;
+	}
+	@Override
+	public int ident(Long classhoursid, Integer status) {
+		// TODO Auto-generated method stub
+		return classhoursMapper.ident(classhoursid, status);
 	}
 
 }

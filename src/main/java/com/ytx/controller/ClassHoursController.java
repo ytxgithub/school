@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageInfo;
 import com.ytx.pojo.Classhours;
 import com.ytx.pojo.Student;
+import com.ytx.pojo.Teacher;
 import com.ytx.service.ClassHoursService;
 
 @Controller
@@ -37,7 +38,6 @@ public class ClassHoursController {
 			ModelAndView modelAndView=new ModelAndView("stu/stu_hours_list");
 			modelAndView.addObject("classhours",pageInfo.getList());
 			modelAndView.addObject("pageCount",pageInfo.getPages());
-			System.out.println(pageInfo.getList().size()+"---------");
 			return modelAndView;
 	}
 	
@@ -77,6 +77,47 @@ public class ClassHoursController {
 		classhours.setModifydate(new Date());
 		classHoursService.insertSelective(classhours);
 		return "redirect:/classhours/hourslist";
+	}
+	
+	/**
+	 * 跳转到上课时间页面
+	 * @return
+	 */
+	@RequestMapping("/skform")
+	public ModelAndView skForm(HttpServletRequest request,
+			@RequestParam(defaultValue="1")Integer pageIndex,
+			@RequestParam(defaultValue="2")Integer pageSize){
+			HttpSession session=request.getSession();
+			Teacher teacher=(Teacher) session.getAttribute("TEACHER");
+			PageInfo<Classhours> pageInfo=classHoursService.teahourslist(teacher.getId(),pageIndex,pageSize);
+			ModelAndView modelAndView=new ModelAndView("tea/tea_stu_onke");
+			modelAndView.addObject("classhours",pageInfo.getList());
+			modelAndView.addObject("pageCount",pageInfo.getPages());
+			return modelAndView;
+	}
+	
+	/**
+	 * 老师审核课程
+	 * @return
+	 */
+	@RequestMapping("/shform")
+	public ModelAndView shForm(HttpServletRequest request,
+			@RequestParam(defaultValue="1")Integer pageIndex,
+			@RequestParam(defaultValue="2")Integer pageSize){
+			HttpSession session=request.getSession();
+			Teacher teacher=(Teacher) session.getAttribute("TEACHER");
+			PageInfo<Classhours> pageInfo=classHoursService.teahourssh(teacher.getId(),pageIndex,pageSize);
+			ModelAndView modelAndView=new ModelAndView("tea/tea_stu_sh");
+			modelAndView.addObject("classhours",pageInfo.getList());
+			modelAndView.addObject("pageCount",pageInfo.getPages());
+			return modelAndView;
+	}
+		
+	@RequestMapping("/ident")
+	public String ident(Long classhoursid,Integer status){
+		classHoursService.ident(classhoursid, status);
+		return "redirect:/classhours/shform";
+		
 	}
 	
 }

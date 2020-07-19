@@ -47,4 +47,13 @@ public interface StudentService {
 	 * @return
 	 */
 	int insertSelective(Student student);
+	
+	/**
+	 * 校长查询学生
+	 * @param student
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	PageInfo<Student> schstulist(Student student,Integer pageIndex,Integer pageSize);
 }

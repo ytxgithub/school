@@ -130,4 +130,10 @@
       xzpwd = #{xzpwd,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="schone" parameterType="Sch" resultType="Sch">
+  		select <include refid="Base_Column_List"></include>
+  		from sch where xzname=#{xzname} and xzpwd=#{xzpwd}
+  </select>
+  
 </mapper>

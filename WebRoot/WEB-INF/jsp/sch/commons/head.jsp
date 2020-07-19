@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学生管理系统</title>
+    <title>APP信息管理系统-开发者平台</title>
 
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath }/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,11 +35,11 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="${pageContext.request.contextPath}/uploads/sch/sch.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
-                <h2>${sessionScope.TEACHER.name }老师</h2>
+                <h2>${sessionScope.SCH.xzname }校长</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -49,18 +49,17 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>老师后台</h3>
+                <h3>管理者</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i>学生信息<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="${pageContext.request.contextPath }/student/studentlist">学生列表</a></li>
-					   <li><a href="${pageContext.request.contextPath }/student/stuaddform">添加学生</a></li>
+                      <li><a href="${pageContext.request.contextPath}/sch/schStulist">全校学生信息</a></li>
+                      <li><a href="${pageContext.request.contextPath}/student/stuaddform?status=1">添加学生信息</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>课程安排<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i>老师信息<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="${pageContext.request.contextPath }/classhours/skform">上课时间</a></li>
-					  <li><a href="${pageContext.request.contextPath }/classhours/shform">审核课程</a></li>
+                      <li><a href="${pageContext.request.contextPath}/sch/schTealist">全校老师信息</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -99,11 +98,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">${sessionScope.TEACHER.name }老师
+                    <img src="images/img.jpg" alt="">${sessionScope.SCH.xzname }校长
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="${pageContext.request.contextPath}/login/tealogout"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                    <li><a href="${pageContext.request.contextPath}/login/schlogout"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
                   </ul>
                 </li>
               </ul>

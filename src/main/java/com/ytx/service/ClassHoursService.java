@@ -14,4 +14,17 @@ public interface ClassHoursService {
 	
 	//添加课时
 	int insertSelective(Classhours classhours);
+	
+	//根据老师id查询上课情况
+	PageInfo<Classhours> teahourslist(Long teacherid,Integer pageIndex,Integer pageSize);
+	
+	/**
+     * 审核课程
+     * @param classhours
+     * @return
+     */
+    PageInfo<Classhours> teahourssh(Long teacherid,Integer pageIndex,Integer pageSize);
+    
+    //审核通过或不通过
+    int ident(Long classhoursid,Integer status);
 }

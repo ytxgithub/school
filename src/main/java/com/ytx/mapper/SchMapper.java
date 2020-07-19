@@ -50,4 +50,11 @@ public interface SchMapper {
      * @mbggenerated Sun Jul 12 23:13:43 CST 2020
      */
     int updateByPrimaryKey(Sch record);
+    
+    /**
+     * 校长登录
+     * @param sch
+     * @return
+     */
+    Sch schone(Sch sch);
 }
