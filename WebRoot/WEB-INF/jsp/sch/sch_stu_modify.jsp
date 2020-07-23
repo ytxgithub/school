@@ -95,7 +95,14 @@
 							<div class="form-group">
 								<label class="control-label col-md-2">学生图片</label>
 								<div class="col-md-10">
-									<img src="${pageContext.request.contextPath}/uploads/stu/${stuone.photo}"  class="thumbnail"/>
+									<c:choose>
+										<c:when test="${stuone.photo==null }">
+											<img src="${pageContext.request.contextPath}/uploads/wu/wu.jpg"  class="thumbnail"/>
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/uploads/stu/${stuone.photo}"  class="thumbnail"/>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							

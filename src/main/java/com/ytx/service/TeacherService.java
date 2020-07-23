@@ -21,4 +21,8 @@ public interface TeacherService {
     Integer delTea(Long id);
     
     Integer teaModify(Teacher teacher);
+    
+    Integer addTeacher(Teacher teacher);
+    
+    
 }

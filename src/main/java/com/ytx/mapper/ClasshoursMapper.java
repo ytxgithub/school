@@ -83,5 +83,12 @@ public interface ClasshoursMapper {
      */
     int ident(@Param("classhoursid")Long classhoursid,@Param("status")Integer status);
     
+    /**
+     * 根据学生id删除课时
+     * @param studentid
+     * @return
+     */
+    Integer delClasshoursfindstudentid(@Param("studentid")Long studentid,@Param("teacherid")Long teacherid);
+    
     
 }

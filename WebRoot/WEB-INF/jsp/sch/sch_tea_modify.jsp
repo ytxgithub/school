@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-	<%@ include file="./commons/head.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="./commons/head.jsp" %>
 
 	 <!-- page content -->
       	<div class="right_col" role="main">
@@ -17,7 +18,8 @@
 								<h4>查看老师基本信息</h4>
 							</div>
 							<div class="panel-body">
-								<form action="${pageContext.request.contextPath}/sch/teaModify" class="form-horizontal">
+								<form action="${pageContext.request.contextPath}/sch/teaModify"
+								 class="form-horizontal" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="id" value="${tea.id }"/>
 									<div class="form-group">
 										<label class="control-label col-md-2">老师姓名</label>
@@ -48,9 +50,23 @@
 										<div class="form-group">
 											<label class="control-label col-md-2">老师照片</label>
 											<div class="col-md-10">
-												<img src="${pageContext.request.contextPath}/uploads/tea/${tea.photo}" alt="" class="thumbnail">
+												<c:choose>
+													<c:when test="${tea.photo==null }">
+														<img src="${pageContext.request.contextPath}/uploads/wu/wu.jpg"  class="thumbnail"/>
+													</c:when>
+													<c:otherwise>
+														<img src="${pageContext.request.contextPath}/uploads/tea/${tea.photo}"  class="thumbnail"/>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
+										
+									<div class="form-group">
+										<label class="control-label col-md-2">上传照片</label>
+										<div class="col-md-10">
+											<input type="file" name="file" class="form-control" />
+										</div>
+									</div>
 										
 										<div class="form-group">
 											<div class="col-md-10 col-md-offset-2">

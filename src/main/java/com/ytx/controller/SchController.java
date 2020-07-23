@@ -1,16 +1,21 @@
 package com.ytx.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 import com.ytx.pojo.Student;
 import com.ytx.pojo.Teacher;
+import com.ytx.service.ClassHoursService;
 import com.ytx.service.StudentService;
 import com.ytx.service.TeacherService;
 
@@ -19,6 +24,7 @@ import com.ytx.service.TeacherService;
 public class SchController {
 	@Autowired private StudentService studentService;
 	@Autowired private TeacherService teacherService;
+	@Autowired private ClassHoursService classHoursService;
 	//校长模块学生列表
 	@RequestMapping("/schStulist")
 	public ModelAndView studentList(Student student,@RequestParam(defaultValue="1")Integer pageIndex,
@@ -32,12 +38,11 @@ public class SchController {
 			student.setSex(null);
 		}
 			ModelAndView modelAndView=new ModelAndView("sch/sch_stu_list");
-		
+			
 			PageInfo<Student> pageInfo=studentService.schstulist(student, pageIndex, pageSize);
 			modelAndView.addObject("studentlist", pageInfo.getList());
 			modelAndView.addObject("pageCount",pageInfo.getPages());
 			modelAndView.addObject("par","&"+request.getQueryString());
-			System.out.println(pageInfo.getList().size()+"---------------");
 			return modelAndView;
 	}
 	//老师列表校长模块
@@ -71,9 +76,19 @@ public class SchController {
 	
 	//根据id删除老师
 	@RequestMapping("/schTeadel")
-	public String schTeadel(Long id){
+	public String schTeadel(Long id,HttpServletRequest request){
+		Teacher t=teacherService.findTeaById(id);
+		if(t.getPhoto()!=null && !t.getPhoto().equals("")){
+				String targetFolder=request.getServletContext().getRealPath("/uploads/tea");
+				File f=new File(targetFolder+File.separator+t.getPhoto());
+				if(f.exists()){
+					f.delete();
+				}
+		}
+		//删除对应的课时
+		classHoursService.delClasshoursfindstudentid(0L,id);
 		teacherService.delTea(id);
-		return "sch/sch_tea_list";
+		return "redirect:/sch/schTealist";
 	}
 	
 	//跳转到修改页面
@@ -87,7 +102,7 @@ public class SchController {
 	
 	//修改老师信息
 	@RequestMapping("/teaModify")
-	public String teaModify(Teacher teacher){
+	public String teaModify(Teacher teacher,MultipartFile file,HttpServletRequest request){
 		
 		if("1".equals(teacher.getSex())){
 			teacher.setSex("男");
@@ -96,7 +111,44 @@ public class SchController {
 		}else{
 			teacher.setSex(null);
 		}
-		
+		//修改老师图片  先删除原图片
+		Teacher t=teacherService.findTeaById(teacher.getId());
+		if(t.getPhoto()!=null && !t.getPhoto().equals("")){
+				String targetFolder=request.getServletContext().getRealPath("/uploads/tea");
+				File f=new File(targetFolder+File.separator+t.getPhoto());
+				if(f.exists()){
+					f.delete();
+				}
+		}
+		String newFileName="";
+		String savePathFile="";
+		if(file!=null&&!file.isEmpty()){
+			System.out.println("上传成功");
+			/*把文件上传到哪里*/
+			String targetFolder=request.getServletContext().getRealPath("/uploads/tea");
+			/*上传文件的新名字的前缀*/
+			String prefixFileName=String.valueOf(System.currentTimeMillis());
+			//上传文件的扩展名
+			String extName=file.getOriginalFilename().split("\\.")
+					[file.getOriginalFilename().split("\\.").length-1];
+			/*上传文件的新名字*/
+			newFileName=prefixFileName+"."+extName;
+			/*保存到哪里*/
+			savePathFile=targetFolder+File.separator+newFileName;
+			try {
+				file.transferTo(new File(savePathFile));
+				
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(!newFileName.equals("")&&!savePathFile.equals("")){
+				teacher.setPhoto(newFileName);
+			}
+		}
 		teacherService.teaModify(teacher);
 		return "redirect:/sch/schTealist";
 		

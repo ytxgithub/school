@@ -18,7 +18,9 @@
       					<h4>修改学生基本信息</h4>
       				</div>
       				<div class="panel-body">
-      					<form action="${pageContext.request.contextPath}/student/modifystu" class="form-horizontal">
+      					<form action="${pageContext.request.contextPath}/student/modifystu" 
+      					 class="form-horizontal" method="post" enctype="multipart/form-data">
+      					 
 							<input type="hidden" name="id" value="${stuone.id }"/>
       						<div class="form-group">
       							<label class="control-label col-md-2">学生姓名</label>
@@ -94,7 +96,21 @@
 							<div class="form-group">
 								<label class="control-label col-md-2">学生图片</label>
 								<div class="col-md-10">
-									<img src="${pageContext.request.contextPath}/uploads/stu/${stuone.photo}"  class="thumbnail"/>
+									<c:choose>
+										<c:when test="${stuone.photo==null }">
+											<img src="${pageContext.request.contextPath}/uploads/wu/wu.jpg"  class="thumbnail"/>
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/uploads/stu/${stuone.photo}"  class="thumbnail"/>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-md-2">上传照片</label>
+								<div class="col-md-10">
+									<input type="file" name="file" class="form-control" />
 								</div>
 							</div>
 							

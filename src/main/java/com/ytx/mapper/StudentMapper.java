@@ -66,4 +66,6 @@ public interface StudentMapper {
     
     //查询自己的信息
     Student studentone(Long id);
+    
+    
 }

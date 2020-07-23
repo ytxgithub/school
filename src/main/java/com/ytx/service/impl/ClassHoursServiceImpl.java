@@ -50,5 +50,10 @@ public class ClassHoursServiceImpl implements ClassHoursService{
 		// TODO Auto-generated method stub
 		return classhoursMapper.ident(classhoursid, status);
 	}
+	@Override
+	public Integer delClasshoursfindstudentid(Long studentid,Long teacherid) {
+		// TODO Auto-generated method stub
+		return classhoursMapper.delClasshoursfindstudentid(studentid,teacherid);
+	}
 
 }

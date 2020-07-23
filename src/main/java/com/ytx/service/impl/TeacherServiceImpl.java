@@ -54,6 +54,12 @@ public class TeacherServiceImpl implements TeacherService {
 		// TODO Auto-generated method stub
 		return teacherMapper.updateByPrimaryKeySelective(teacher);
 	}
+	@Override
+	public Integer addTeacher(Teacher teacher) {
+		// TODO Auto-generated method stub
+		return teacherMapper.insertSelective(teacher);
+	}
+	
 	
 
 }

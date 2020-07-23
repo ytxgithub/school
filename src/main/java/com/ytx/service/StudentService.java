@@ -56,4 +56,11 @@ public interface StudentService {
 	 * @return
 	 */
 	PageInfo<Student> schstulist(Student student,Integer pageIndex,Integer pageSize);
+	
+	/**
+	 * 注册
+	 * @param student
+	 * @return
+	 */
+	
 }

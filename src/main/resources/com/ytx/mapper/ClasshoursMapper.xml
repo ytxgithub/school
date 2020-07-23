@@ -226,4 +226,18 @@
   <update id="ident" >
   		update classhours set ident=#{status} where id=#{classhoursid}
   </update>
+  
+<!--   根据学生id删除课时 -->
+<delete id="delClasshoursfindstudentid"  parameterType="long">
+	delete from classhours
+	<where>
+		<if test="studentid!=0">
+			and studentid=#{studentid}
+		</if>
+		<if test="teacherid!=0">
+			and teacherid=#{teacherid}
+		</if>
+	</where>
+</delete>
+  
 </mapper>

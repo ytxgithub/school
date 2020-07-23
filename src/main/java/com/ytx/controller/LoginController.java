@@ -13,6 +13,7 @@ import com.ytx.pojo.Teacher;
 import com.ytx.service.SchService;
 import com.ytx.service.StudentService;
 import com.ytx.service.TeacherService;
+import com.ytx.utils.MD5Util;
 
 @Controller
 @RequestMapping("/login")
@@ -31,6 +32,7 @@ public class LoginController {
 				student.getStupwd()!=null && !student.getStupwd().trim().equals("")){
 			//学生登录就进入学生登录业务
 			if("学生".equals(shenfen)){
+				student.setStupwd(MD5Util.string2MD5(student.getStupwd()));
 				Student stu=studentService.studentLogin(student);
 				if(stu!=null){
 					//登录成功放入session中
@@ -41,7 +43,7 @@ public class LoginController {
 			}else if("老师".equals(shenfen)){
 				Teacher t=new Teacher();
 				t.setTeachercode(student.getStucode());
-				t.setTeacherpwd(student.getStupwd());
+				t.setTeacherpwd(MD5Util.string2MD5(student.getStupwd()));
 				Teacher tea=teacherService.teacherone(t);
 				if(tea!=null){
 					HttpSession session=request.getSession();
@@ -52,10 +54,10 @@ public class LoginController {
 				Sch sch=new Sch();	
 				sch.setXzname(student.getStucode());
 				sch.setXzpwd(student.getStupwd());
-				schService.schone(sch);
-				if(sch!=null){
+				Sch sc=schService.schone(sch);
+				if(sc!=null){
 					HttpSession session=request.getSession();
-					session.setAttribute("SCH",sch);
+					session.setAttribute("SCH",sc);
 					return "sch/sch_main";
 				}
 			}
@@ -64,6 +66,9 @@ public class LoginController {
 		return "stu/login";
 		
 	}
+	
+
+
 	
 	@RequestMapping("/tealogout")
 	public String tealogout(HttpServletRequest request){

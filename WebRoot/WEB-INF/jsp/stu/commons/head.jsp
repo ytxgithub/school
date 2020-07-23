@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -35,7 +36,15 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              		<c:choose>
+						<c:when test="${sessionScope.STUDENT.photo==null}">
+							<img src="${pageContext.request.contextPath}/uploads/wu/wu.jpg"  class="img-circle profile_img"/>
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/uploads/stu/${sessionScope.STUDENT.photo}"  class="img-circle profile_img"/>
+						</c:otherwise>
+					</c:choose>
+               
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>

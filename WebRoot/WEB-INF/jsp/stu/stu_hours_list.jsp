@@ -42,6 +42,7 @@
 												<c:choose>
 													<c:when test="${ca.ident==0}">
 														<td>预约失败</td>
+														<td><a href="${pageContext.request.contextPath}/classhours/delhours?id=${ca.id}">删除预约</a></td>
 													</c:when>
 													<c:when test="${ca.ident==1}">
 														<td>预约成功</td>

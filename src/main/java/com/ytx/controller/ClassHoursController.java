@@ -30,8 +30,8 @@ public class ClassHoursController {
 	 */
 	@RequestMapping("/hourslist")
 	public ModelAndView hoursList(HttpServletRequest request,
-			@RequestParam(defaultValue="1")Integer pageIndex,
-			@RequestParam(defaultValue="2")Integer pageSize){
+			@RequestParam(name="pageIndex",defaultValue="1")Integer pageIndex,
+			@RequestParam(name="pageSize",defaultValue="2")Integer pageSize){
 			HttpSession session=request.getSession();
 			Student student=(Student) session.getAttribute("STUDENT");
 			PageInfo<Classhours> pageInfo=classHoursService.hourslist(student.getId(), pageIndex,pageSize);

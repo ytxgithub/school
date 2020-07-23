@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-	<%@ include file="./commons/head.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="./commons/head.jsp" %>
 
 	 <!-- page content -->
       		<div class="right_col" role="main">
@@ -37,7 +38,14 @@
 										<div class="form-group">
 												<label class="control-label col-md-2">老师照片</label>
 											<div class="col-md-10">
-												<img src="${pageContext.request.contextPath}/uploads/tea/${t.photo}" alt="" class="thumbnail">
+												<c:choose>
+													<c:when test="${tea.photo==null }">
+														<img src="${pageContext.request.contextPath}/uploads/wu/wu.jpg"  class="thumbnail"/>
+													</c:when>
+													<c:otherwise>
+														<img src="${pageContext.request.contextPath}/uploads/tea/${tea.photo}"  class="thumbnail"/>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 										

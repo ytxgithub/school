@@ -81,7 +81,7 @@
       <if test="teacherpwd != null">
         teacherpwd,
       </if>
-      <if test="classid != null">
+      <if test="classid != null and classid != 0">
         classid,
       </if>
       <if test="phone != null">
@@ -113,7 +113,7 @@
       <if test="teacherpwd != null">
         #{teacherpwd,jdbcType=VARCHAR},
       </if>
-      <if test="classid != null">
+      <if test="classid != null and classid != 0">
         #{classid,jdbcType=BIGINT},
       </if>
       <if test="phone != null">

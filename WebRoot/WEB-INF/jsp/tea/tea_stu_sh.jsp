@@ -17,33 +17,17 @@
       								<thead>
       									<tr class="bg-blue-sky">
       										<th>学生姓名</th>
-											<th>性别</th>
-											<th>年龄</th>
-      										<th>班级名称</th>
-											<th>专业名称</th>
-      										<th>手机号</th>
-      										<th>地址</th>
+											<th>科目名称</th>
+											<th>上课时间</th>
 											<th>操作</th>
       									</tr>
       								</thead>
       								<tbody>
-      									<c:forEach items="${studentlist}" var="s">
+      									<c:forEach items="${classhours}" var="ca">
       										<tr>
-	      										<td>${s.name }</td>
-	      										<td>${s.sex }</td>
-	      										<td>${s.age }</td>
-	      										<td>${s.classname }</td>
-	      										<td>${s.majorname }</td>
-	      										<td>${s.phone }</td>
-	      										<c:choose>
-	      											<c:when test="${s.xianname!=null}">
-	      												<td>${s.shengname}->${s.cityname}->${s.xianname}</td>
-	      											</c:when>
-	      											<c:otherwise>
-	      												<td>该用户地址不全</td>
-	      											</c:otherwise>
-	      										</c:choose>
-	      										
+	      										<td>${ca.studentname}</td>
+	      										<td>${ca.subjectname}</td>
+	      										<td>${ca.coursedate}</td>
 												<td>
 													<div class="btn-group dropdown">
 														<button type="button" class="btn btn-danger">选择操作</button>
@@ -51,9 +35,8 @@
 															<span class="caret"></span>
 														</button>
 														<ul class="dropdown-menu">
-															<li><a href="${pageContext.request.contextPath}/student/stuinfo?id=${s.id}">查看信息</a></li>
-															<li><a href="${pageContext.request.contextPath}/student/delstu?id=${s.id}">删除学生</a></li>
-															<li><a href="${pageContext.request.contextPath}/student/stuinfo?id=${s.id}&mod=1">修改学生</a></li>
+															<li><a href="${pageContext.request.contextPath}/classhours/ident?status=1&classhoursid=${ca.id}">审核通过</a></li>
+															<li><a href="${pageContext.request.contextPath}/classhours/ident?status=0&classhoursid=${ca.id}">审核不通过</a></li>
 														</ul>
 													</div>
 												</td>

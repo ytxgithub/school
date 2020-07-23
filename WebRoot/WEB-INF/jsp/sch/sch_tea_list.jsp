@@ -61,7 +61,7 @@
         								</thead>
         								<tbody>
         									
-        									<c:forEach items="#{teachertlist}" var="t">
+        									<c:forEach items="${teachertlist}" var="t">
         										<tr>
 	        										<td>${t.name }</td>
 	        										<td>${t.sex }</td>

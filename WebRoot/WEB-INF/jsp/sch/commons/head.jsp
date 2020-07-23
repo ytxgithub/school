@@ -39,7 +39,7 @@
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
-                <h2>${sessionScope.SCH.xzname }校长</h2>
+                <h2>${sessionScope.SCH.name}校长</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -60,6 +60,7 @@
                   <li><a><i class="fa fa-edit"></i>老师信息<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="${pageContext.request.contextPath}/sch/schTealist">全校老师信息</a></li>
+                      <li><a href="${pageContext.request.contextPath}/teacher/schTeaaddForm">添加老师信息</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -98,7 +99,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">${sessionScope.SCH.xzname }校长
+                    <img src="images/img.jpg" alt="">${sessionScope.SCH.name }校长
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

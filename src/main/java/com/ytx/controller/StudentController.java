@@ -18,14 +18,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageInfo;
 import com.ytx.pojo.Student;
 import com.ytx.pojo.Teacher;
+import com.ytx.service.ClassHoursService;
 import com.ytx.service.ClassService;
 import com.ytx.service.StudentService;
+import com.ytx.utils.MD5Util;
 
 @Controller
 @RequestMapping("/student")
 public class StudentController {
-	private @Autowired StudentService studentService;
-	private @Autowired ClassService  classService;
+	@Autowired private StudentService studentService;
+	@Autowired private ClassService  classService;
+	@Autowired private ClassHoursService classHoursService;
 	//老师所在班级所有学生信息
 	@RequestMapping("/studentlist")
 	public ModelAndView studentList(Student student,@RequestParam(defaultValue="1")Integer pageIndex,
@@ -106,6 +109,9 @@ public class StudentController {
 					file.delete();
 				}
 			}
+			//删除对应的课时
+			classHoursService.delClasshoursfindstudentid(id,0L);
+			//删除学生
 			studentService.deleteByPrimaryKey(id);
 			if(del!=null){
 				return "redirect:/sch/schStulist";
@@ -115,7 +121,47 @@ public class StudentController {
 		
 		//修改学生信息  status不为空重定向到校长查询界面
 		@RequestMapping("/modifystu")
-		public String modifyStu(Student student,Integer status){
+		public String modifyStu(Student student,Integer status,MultipartFile file,HttpServletRequest request){
+			
+			Student s=studentService.studentone(student.getId());
+			if(s.getPhoto()!=null && !s.getPhoto().equals("")){
+				String targetFolder=request.getServletContext().getRealPath("/uploads/stu");
+				File f=new File(targetFolder+File.separator+s.getPhoto());
+				if(f.exists()){
+					f.delete();
+				}
+		}
+				
+			String newFileName="";
+			String savePathFile="";
+			if(file!=null&&!file.isEmpty()){
+				System.out.println("上传成功");
+				/*把文件上传到哪里*/
+				String targetFolder=request.getServletContext().getRealPath("/uploads/stu");
+				/*上传文件的新名字的前缀*/
+				String prefixFileName=String.valueOf(System.currentTimeMillis());
+				//上传文件的扩展名
+				String extName=file.getOriginalFilename().split("\\.")
+						[file.getOriginalFilename().split("\\.").length-1];
+				/*上传文件的新名字*/
+				newFileName=prefixFileName+"."+extName;
+				/*保存到哪里*/
+				savePathFile=targetFolder+File.separator+newFileName;
+				try {
+					file.transferTo(new File(savePathFile));
+					
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(!newFileName.equals("")&&!savePathFile.equals("")){
+					student.setPhoto(newFileName);
+				}
+			}
+			
 			studentService.updateByPrimaryKeySelective(student);
 			if(status!=null){
 				return "redirect:/sch/schStulist";
@@ -170,6 +216,7 @@ public class StudentController {
 				}
 			}
 			student.setModifydate(new Date());
+			student.setStupwd(MD5Util.string2MD5(student.getStupwd()));
 			studentService.insertSelective(student);
 			if(status!=null){
 				return "redirect:/sch/schStulist";

@@ -362,4 +362,6 @@
 		LEFT JOIN think_areas t3 ON s.`xian`=t3.`area_id`
 		 where s.id=#{id}
   </select>
+  
+ 
 </mapper>

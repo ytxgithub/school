@@ -75,27 +75,25 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+            <form action="${pageContext.request.contextPath }/login/zhuce">
               <h1>注册</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" name="stucode" class="form-control" placeholder="Username" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" name="stupwd" class="form-control" value="123456" placeholder="Password" required="" />
               </div>
-			  
 			  <div>
-			  	<label id="ao">
-					<input type="radio" form="ao" name="shenfen" />学生
-			  	</label>
-			  	 <label id="ai" style="margin-left: 40px;margin-right: 40px;">
-			  		<input type="radio" form="ai" name="shenfen" />老师
-			  	</label>
-				<label id="ab">
-					<input type="radio" form="ab" name="shenfen" />校长
-			  	</label>
+				  <label>
+					  <input type="radio" name="shenfen" value="学生" checked="checked" />学生
+				  </label>
+				  <label  style="margin-left: 40px;margin-right: 40px;">
+				  	  <input type="radio" value="老师" name="shenfen" />老师
+				  </label>
+				  <label>
+				  	  <input type="radio" value="校长"  name="shenfen" />校长
+				  </label>
 			  </div>
-			  
 			  
               <div>
                 <a class="btn btn-danger submit btn-block" href="index.html">立即注册</a>

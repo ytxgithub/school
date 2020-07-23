@@ -1,7 +1,5 @@
 package com.ytx.service;
 
-import java.util.List;
-
 import com.github.pagehelper.PageInfo;
 import com.ytx.pojo.Classhours;
 
@@ -27,4 +25,7 @@ public interface ClassHoursService {
     
     //审核通过或不通过
     int ident(Long classhoursid,Integer status);
+    
+    //根据学生id删除课时
+    Integer delClasshoursfindstudentid(Long studetnid,Long teacherid);
 }
